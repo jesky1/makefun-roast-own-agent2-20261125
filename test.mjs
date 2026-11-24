@@ -72,7 +72,15 @@ test("gate rejects a line under five words", () => {
 });
 
 test("gate accepts exactly 200 characters", () => {
-  const line = "word ".repeat(39) + "words";
+  const line = "word ".repeat(39) + "word.";
   assert.equal(line.length, 200);
   assert.equal(lineIsValid(line), true);
+});
+
+test("gate rejects a double space inside the line", () => {
+  assert.equal(lineIsValid("my agent  works all night long"), false);
+});
+
+test("gate rejects a line with no ending punctuation", () => {
+  assert.equal(lineIsValid("my agent works all night long"), false);
 });

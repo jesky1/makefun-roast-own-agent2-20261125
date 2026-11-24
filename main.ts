@@ -28,7 +28,13 @@ export function lineIsValid(line: string): boolean {
   if (line.split(/\s+/).length < 5) {
     return false;
   }
-  if (line.includes("http")) {
+  if (line.includes("http") || line.includes("www.")) {
+    return false;
+  }
+  if (line.includes("  ")) {
+    return false;
+  }
+  if (!/[.!?]$/.test(line)) {
     return false;
   }
   return true;
